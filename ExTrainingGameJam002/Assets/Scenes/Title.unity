@@ -1520,8 +1520,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1265349925720827406}
+  PauseFadeImage: {fileID: 1265349925720827406}
   fadeOutDuration: 1
-  fadeInDuration: 1
+  fadeInDuration: 0.5
   waitTime: 0.1
   scene: Game
 --- !u!223 &7266152194088373616
