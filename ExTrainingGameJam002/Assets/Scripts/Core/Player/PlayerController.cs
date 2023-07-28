@@ -1,14 +1,8 @@
-using NUnit.Framework.Constraints;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]private float speed = 0.005f;
+    [SerializeField] private float speed = 0.005f;
 
     // Start is called before the first frame update
     void Start()

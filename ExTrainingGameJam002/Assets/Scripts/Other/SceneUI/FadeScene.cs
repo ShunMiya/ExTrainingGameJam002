@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace TitleScene
 {
-    public class FadeOutScene : MonoBehaviour
+    public class FadeScene : MonoBehaviour
     {
         public Image fadeImage;
         public Image PauseFadeImage;
