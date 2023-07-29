@@ -115,6 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _moveSpeed: 1
+  _moveSpeed: 0
   _minDistance: 0.05
-  _reCalcTime: 0.5
+  _reCalcTime: 0.1
