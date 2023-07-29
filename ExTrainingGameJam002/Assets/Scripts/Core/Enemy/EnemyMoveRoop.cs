@@ -5,18 +5,17 @@ using UnityEngine.AI;
 
 namespace EnemyMove.RoundTrip
 {
-    public class EnemyPlayerCheck : MonoBehaviour
+    public class EnemyMoveRoop : MonoBehaviour
     {
         [SerializeField] Transform _player; // プレイヤー
-        [SerializeField] Transform _targetBeta; // 二つ目の追尾対象の位置
-        [SerializeField] Transform _targetGamma; // 三つ目の追尾対象の位置
+        [SerializeField] List<Transform> _targetList; // 追尾対象の位置リスト
 
         [SerializeField] float _moveSpeed = 1f; // 移動速度
         [SerializeField] float _minDistance = 0.05f; // どれくらい近づいたら次のポイントに移るか
         [SerializeField] float _reCalcTime = 0.5f; // プレイヤーへの経路再計算をする間隔
 
         private Transform _playerTransform; //プレイヤーの位置
-        NavMeshAgent2D agent;
+        NavMeshTotalDistanceCheck agent;
 
         private Vector2 _currentTarget; // 現在の追尾対象の位置                            
         private Vector2 _nextPoint;// 次の移動先
@@ -25,16 +24,16 @@ namespace EnemyMove.RoundTrip
         private Queue<Vector3> _navMeshCorners = new();
         private Vector3 _calcedPlayerPos;
         private float _elapsed;
-        private bool TargetBeta;
+        private int _currentTargetIndex = 0;
 
         public void Awake()
         {
             _myTransform = transform;
             _playerTransform = _player.transform;
-            _currentTarget = _targetBeta.position; // 初期目標地点をβに設定
+            _currentTarget = _targetList[0].position; // 初期目標地点を_targetListの先頭に設定
             _nextPoint = _myTransform.position;
             _navMeshPath = new NavMeshPath();
-            agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
+            agent = GetComponent<NavMeshTotalDistanceCheck>(); //agentにNavMeshAgent2Dを取得
         }
 
         public void Update()
@@ -44,13 +43,10 @@ namespace EnemyMove.RoundTrip
             {
                 _elapsed = 0;
 
-                //agentPlayer();
+                agentPlayer();
                 _calcedPlayerPos = _playerTransform.localPosition;
 
-                /*if(agent.GetTotalDistanceTraveled() <= 5f)
-                {
-                    _currentTarget = _calcedPlayerPos;
-                }else _currentTarget = _targetBeta.position;*/
+                _currentTarget = agent.GetTotalDistance() <= 5f ? _calcedPlayerPos : _currentTarget;
 
                 NestStep();
             }
@@ -61,17 +57,12 @@ namespace EnemyMove.RoundTrip
             {
                 if (_navMeshCorners.Count == 0)
                 {
-                    if(TargetBeta == true)
-                    {
-                        _currentTarget = _targetGamma.position;
-                        _nextPoint = _myTransform.localPosition;
-                        TargetBeta = false;
-                    }else
-                    {
-                        _currentTarget = _targetBeta.position;
-                        _nextPoint = _myTransform.localPosition;
-                        TargetBeta = true;
-                    }
+                    _currentTargetIndex++;
+                    if (_currentTargetIndex >= _targetList.Count)
+                        _currentTargetIndex = 0;
+
+                    _currentTarget = _targetList[_currentTargetIndex].position;
+                    _nextPoint = _myTransform.localPosition;
                     return;
                 }
                 _nextPoint = _navMeshCorners.Dequeue();
