@@ -64,11 +64,17 @@ namespace Player
 
             // ˆÚ“®‚ªI‚í‚Á‚½‚ç“§–¾“x‚ğŒ³‚É–ß‚·
             playerSpriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, startAlpha);
+            HaveKey = false;
         }
 
         public void AreaClearPointUpdate(bool data)
         {
             AreaClearPoint = data;
+        }
+
+        public void HaveKeyUpdate()
+        {
+            HaveKey = true;
         }
     }
 }

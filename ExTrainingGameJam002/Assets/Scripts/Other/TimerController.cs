@@ -8,7 +8,7 @@ namespace TimerSystem
     public class TimerController : MonoBehaviour
     {
         public float totalTime; // 制限時間（秒）
-        private float currentTime; // 現在の残り時間
+        public float currentTime; // 現在の残り時間
         private TextMeshProUGUI textMeshPro;
         [SerializeField]private PauseSystem pauseSystem;
 

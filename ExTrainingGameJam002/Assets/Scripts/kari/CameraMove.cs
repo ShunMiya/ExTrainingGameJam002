@@ -8,7 +8,7 @@ namespace StageSystem
     {
         public List<Transform> cameraPoints; // カメラが移動するポイントのリスト
         public List<int> zoomValue;
-        [SerializeField]private int currentPointIndex = 0; // 現在のポイントのインデックス
+        public int currentPointIndex = 0; // 現在のポイントのインデックス
 
         public float moveDuration = 1.0f;
         private Camera cam;
