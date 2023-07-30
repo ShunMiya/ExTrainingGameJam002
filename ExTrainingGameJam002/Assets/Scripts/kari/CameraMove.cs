@@ -92,9 +92,9 @@ namespace StageSystem
             transform.LookAt(cameraPoints[currentPointIndex]);
         }
 
-        public void PointUpdate(int point)
+        public void PointUpdate()
         {
-            currentPointIndex = point;
+            currentPointIndex += 1;
         }
         public void AllMapPointUpdate(bool data)
         {

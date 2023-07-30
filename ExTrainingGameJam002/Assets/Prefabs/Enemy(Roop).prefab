@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5698571487945791776}
   - component: {fileID: 6023475550406459748}
   - component: {fileID: 6023475550406459751}
+  - component: {fileID: 761534459}
   m_Layer: 0
   m_Name: Enemy(Roop)
   m_TagString: Enemy
@@ -97,7 +98,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.012568483, y: 0.002513627}
@@ -121,7 +122,7 @@ MonoBehaviour:
   - {fileID: 5698571487291732926}
   _moveSpeed: 2
   _minDistance: 0.05
-  _reCalcTime: 0.5
+  _reCalcTime: 0.1
 --- !u!114 &6023475550406459751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +135,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3c3c2a5bf745a4f939eea994f0e51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &761534459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407878987054719470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c696790b9fe7e1e4f83909a52f8d0a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseSystem: {fileID: 0}
 --- !u!1 &5698571486622833737
 GameObject:
   m_ObjectHideFlags: 0
