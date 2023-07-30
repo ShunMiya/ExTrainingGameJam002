@@ -26,7 +26,11 @@ namespace StageSystem
         // Update is called once per frame
         void Update()
         {
-            if (!AllMapPoint) return;
+            if (!AllMapPoint)
+            {
+                AllMap = false;
+                return;
+            }
 
             if (Input.GetKeyDown(KeyCode.Space))
             {

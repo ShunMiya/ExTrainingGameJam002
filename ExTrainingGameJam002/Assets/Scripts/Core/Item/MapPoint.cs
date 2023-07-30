@@ -5,7 +5,12 @@ namespace StageSystem
     public class MapPoint : MonoBehaviour
     {
         public bool AllMapPoint = false;
-        public CameraMove cameraMove;
+        private CameraMove cameraMove;
+
+        private void Start()
+        {
+            cameraMove = FindObjectOfType<CameraMove>();
+        }
 
         public void Update()
         {
