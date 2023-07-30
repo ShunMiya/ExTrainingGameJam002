@@ -8,10 +8,13 @@ namespace StageSystem
     {
         public List<Transform> cameraPoints; // カメラが移動するポイントのリスト
         public List<int> zoomValue;
-        private int currentPointIndex = 0; // 現在のポイントのインデックス
+        [SerializeField]private int currentPointIndex = 0; // 現在のポイントのインデックス
 
         public float moveDuration = 1.0f;
         private Camera cam;
+
+        public bool AllMapPoint = false;
+        public bool AllMap = false;
 
         private void Start()
         {
@@ -23,7 +26,21 @@ namespace StageSystem
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A)) StartCoroutine(MoveToNextStage());
+            if (!AllMapPoint) return;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("ここまで来てる");
+                if(AllMap == false)
+                {
+                    AllMap = true;
+                    StartCoroutine(MoveToNextStage());
+                }
+                else
+                {
+                    AllMap = false;
+                }
+            }
         }
 
         public IEnumerator MoveToNextStage()
@@ -35,7 +52,7 @@ namespace StageSystem
             }
 
             // 次のポイントのインデックスを計算
-            currentPointIndex = (currentPointIndex + 1) % cameraPoints.Count;
+            //currentPointIndex = (currentPointIndex + 1) % cameraPoints.Count;
 
             // 現在の位置
             Vector3 startPos = transform.position;
@@ -69,6 +86,15 @@ namespace StageSystem
 
             // カメラの注視点を次のポイントに合わせる
             transform.LookAt(cameraPoints[currentPointIndex]);
+        }
+
+        public void PointUpdate(int point)
+        {
+            currentPointIndex = point;
+        }
+        public void AllMapPointUpdate(bool data)
+        {
+            AllMapPoint = data;
         }
     }
 }
