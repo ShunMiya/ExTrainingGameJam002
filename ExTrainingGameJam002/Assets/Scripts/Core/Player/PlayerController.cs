@@ -1,9 +1,13 @@
+
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController: MonoBehaviour
 {
     [SerializeField] private float speed = 0.005f;
 
+
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +17,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 position = transform.position;
+
+  
+    Vector2 position = transform.position;
 
         if (Input.GetKey("up"))
         {
@@ -38,4 +44,12 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
 
     }
+
 }
+
+
+
+
+
+
+
