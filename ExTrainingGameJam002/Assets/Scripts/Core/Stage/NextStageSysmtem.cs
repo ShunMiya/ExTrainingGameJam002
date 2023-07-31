@@ -6,7 +6,8 @@ namespace StageSystem
     public class NextStageSysmtem : MonoBehaviour
     {
         private AreaClear areaClear;
-        public bool NextPoint = false;
+        private bool NextPoint = false;
+        [SerializeField]private bool StageClear = false;
 
         // Start is called before the first frame update
         void Start()
@@ -17,7 +18,7 @@ namespace StageSystem
         // Update is called once per frame
         void Update()
         {
-            areaClear.AreaClearPointUpdate(NextPoint);
+            if(NextPoint) areaClear.AreaClearPointUpdate(NextPoint,StageClear);
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
