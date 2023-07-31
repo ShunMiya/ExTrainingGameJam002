@@ -28,9 +28,7 @@ namespace Player
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("‚±‚±‚Ü‚Å—ˆ‚Ä‚é");
                 if (!HaveKey) return;
-                Debug.Log("‚±‚±‚É‚à—ˆ‚Ä‚é");
 
                 cameraMove.PointUpdate();
 
