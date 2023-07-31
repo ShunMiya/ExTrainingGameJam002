@@ -2,6 +2,7 @@ using EnemyMove.PlayerFollow;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using StageSystem;
 
 namespace EnemyMove.RoundTrip
 {
@@ -12,7 +13,7 @@ namespace EnemyMove.RoundTrip
 
         [SerializeField] float _moveSpeed = 1f; // 移動速度
         [SerializeField] float _minDistance = 0.05f; // どれくらい近づいたら次のポイントに移るか
-        [SerializeField] float _reCalcTime = 0.5f; // プレイヤーへの経路再計算をする間隔
+        [SerializeField] float _reCalcTime = 0.1f; // プレイヤーへの経路再計算をする間隔
 
         private Transform _playerTransform; //プレイヤーの位置
         NavMeshTotalDistanceCheck agent;
@@ -25,6 +26,8 @@ namespace EnemyMove.RoundTrip
         private Vector3 _calcedPlayerPos;
         private float _elapsed;
         private int _currentTargetIndex = 0;
+        private GetHolyWater getHolyWater;
+
 
         public void Awake()
         {
@@ -34,6 +37,7 @@ namespace EnemyMove.RoundTrip
             _nextPoint = _myTransform.position;
             _navMeshPath = new NavMeshPath();
             agent = GetComponent<NavMeshTotalDistanceCheck>(); //agentにNavMeshAgent2Dを取得
+            getHolyWater = FindObjectOfType<GetHolyWater>();
         }
 
         public void Update()
@@ -46,6 +50,7 @@ namespace EnemyMove.RoundTrip
                 agentPlayer();
                 _calcedPlayerPos = _playerTransform.localPosition;
 
+                if (getHolyWater.GetUndetectable() == false)
                 _currentTarget = agent.GetTotalDistance() <= 5f ? _calcedPlayerPos : _currentTarget;
 
                 NestStep();

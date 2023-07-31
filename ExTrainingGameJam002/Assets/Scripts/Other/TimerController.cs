@@ -15,7 +15,10 @@ namespace TimerSystem
         void Start()
         {
             textMeshPro = GetComponent<TextMeshProUGUI>();
+        }
 
+        public void TimerStart()
+        {
             // シーン読み込み後、1秒待機してからカウントダウン開始
             StartCoroutine(StartCountdownAfterDelay());
         }
