@@ -1,75 +1,57 @@
+using StageSystem;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
-/// <summary>
-/// プレイヤーを追尾するダミーの敵キャラクターを表します。
-/// </summary>
-/// <remarks>
-/// NavMeshを使った移動方法のリファレンス実装
-/// </remarks>
 
 namespace EnemyMove.PlayerFollow
 {
     public class EnemyPlayerFollow : MonoBehaviour
     {
-        //
-        // Inspector
-        // - - - - - - - - - - - - - - - - - - - -
+        [SerializeField] Transform _player; // プレイヤー
 
-        // 追尾対象
-        [SerializeField] GameObject _player;
-        // 移動速度
-        [SerializeField] float _moveSpeed = 1f;
-        // どれくらい近づいたら次のポイントに移るか
-        [SerializeField] float _minDistance = 0.05f;
-        // プレイヤーへの経路再計算をする間隔
-        [SerializeField] float _reCalcTime = 0.5f;
+        [SerializeField] float _moveSpeed = 1f; // 移動速度
+        [SerializeField] float _minDistance = 0.05f; // どれくらい近づいたら次のポイントに移るか
+        [SerializeField] float _reCalcTime = 0.1f; // プレイヤーへの経路再計算をする間隔
 
-        //
-        // Fields
-        // - - - - - - - - - - - - - - - - - - - -
+        private Transform _playerTransform; //プレイヤーの位置
+        NavMeshTotalDistanceCheck agent;
 
-        // 次の移動先
-        private Vector2 _nextPoint;
-
-        // キャッシュ類
-        private Transform _plyaerTransform;
+        private Vector2 _currentTarget; // 現在の追尾対象の位置                            
+        private Vector2 _nextPoint;// 次の移動先
         private Transform _myTransform;
-
-        // AI用
         private NavMeshPath _navMeshPath;
         private Queue<Vector3> _navMeshCorners = new();
-
-        // 計算したときのプレイヤーの位置
-        Vector3 _calcedPlayerPos;
-        // 次に再計算するまでの時間
+        private Vector3 _calcedPlayerPos;
         private float _elapsed;
+        private GetHolyWater getHolyWater;
 
-        //
-        // Runtime impl
-        // - - - - - - - - - - - - - - - - - - - -
 
         public void Awake()
         {
             _myTransform = transform;
-            _plyaerTransform = _player.transform;
+            _playerTransform = _player.transform;
+            _currentTarget = _playerTransform.position;
             _nextPoint = _myTransform.position;
             _navMeshPath = new NavMeshPath();
+            agent = GetComponent<NavMeshTotalDistanceCheck>(); //agentにNavMeshAgent2Dを取得
+            getHolyWater = FindObjectOfType<GetHolyWater>();
         }
 
         public void Update()
         {
-            if (_calcedPlayerPos != _plyaerTransform.localPosition)
+            if (getHolyWater.GetUndetectable() == true) return;
+            
+            _elapsed += Time.deltaTime;
+            if (_elapsed > _reCalcTime)
             {
-                _elapsed += Time.deltaTime;
-                if (_elapsed > _reCalcTime)
-                {
-                    _elapsed = 0;
+                _elapsed = 0;
+                
+                agentPlayer();
+                _calcedPlayerPos = _playerTransform.localPosition;
 
-                    NestStep();
-                    _calcedPlayerPos = _plyaerTransform.localPosition; // ルート出したときの位置
-                }
+                _currentTarget = agent.GetTotalDistance() <= 1000f ? _calcedPlayerPos : _currentTarget;
+
+                NestStep();
             }
 
             Vector2 currentPos = _myTransform.localPosition;
@@ -80,6 +62,7 @@ namespace EnemyMove.PlayerFollow
                     _nextPoint = _myTransform.localPosition;
                     return;
                 }
+
                 _nextPoint = _navMeshCorners.Dequeue();
             }
 
@@ -93,15 +76,19 @@ namespace EnemyMove.PlayerFollow
             _myTransform.Translate(step);
         }
 
+        private void agentPlayer()
+        {
+            agent.SetDestination(_player.position);
+        }
+
         private void NestStep()
         {
-            // NavMeshで経路を計算する
-            // 自分の位置 → プレイヤーの位置
             bool isOk = NavMesh.CalculatePath(_myTransform.position,
-                _plyaerTransform.position, NavMesh.AllAreas, _navMeshPath);
+                _currentTarget, NavMesh.AllAreas, _navMeshPath);
             if (!isOk)
             {
                 Debug.LogWarning("Failed to NavMesh.CalculatePath.", this);
+                return;
             }
 
             _navMeshCorners.Clear();

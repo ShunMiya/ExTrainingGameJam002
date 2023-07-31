@@ -120,7 +120,7 @@ MonoBehaviour:
   _targetList:
   - {fileID: 5698571486622833736}
   - {fileID: 5698571487291732926}
-  _moveSpeed: 2
+  _moveSpeed: 1.5
   _minDistance: 0.05
   _reCalcTime: 0.1
 --- !u!114 &6023475550406459751
