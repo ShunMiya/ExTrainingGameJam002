@@ -1,4 +1,5 @@
 using UnityEngine;
+using StageSystem;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -9,22 +10,24 @@ public class CameraFollow : MonoBehaviour
     public float zoomValue;
 
     private Camera cam;
-
+    private CameraMove cameramove;
     private void Start()
     {
         cam = GetComponent<Camera>();
+        cameramove = GetComponent<CameraMove>();
     }
 
     void Update()
     {
+        if (cameramove.AllMap) return;
+
         GameObject player = GameObject.FindGameObjectWithTag(playerTag);
         if (player != null)
         {
             Vector3 desiredPosition = player.transform.position + offset;
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
             transform.position = smoothedPosition;
+            cam.orthographicSize = zoomValue;
         }
-
-        cam.orthographicSize = zoomValue;
     }
 }
