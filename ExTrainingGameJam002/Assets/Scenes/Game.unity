@@ -4728,7 +4728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8830047504574095583, guid: 335026b31c5e239478eb0248c8071fb3, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8830047504574095583, guid: 335026b31c5e239478eb0248c8071fb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14238,7 +14238,7 @@ Transform:
   - {fileID: 1217335356}
   - {fileID: 1777568986}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2138137773
 GameObject:
@@ -14815,6 +14815,14 @@ PrefabInstance:
       propertyPath: pauseSystem
       value: 
       objectReference: {fileID: 1492858614}
+    - target: {fileID: 5581336691147943808, guid: 6193a32e36128254d9d0051dc3414989, type: 3}
+      propertyPath: m_Pitch
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5581336691147943808, guid: 6193a32e36128254d9d0051dc3414989, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5698571487429493026, guid: 6193a32e36128254d9d0051dc3414989, type: 3}
       propertyPath: m_Name
       value: Enemy(Roop) left
@@ -14867,6 +14875,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1802106988}
+    - target: {fileID: 6023475550406459748, guid: 6193a32e36128254d9d0051dc3414989, type: 3}
+      propertyPath: framesBetweenSounds
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6193a32e36128254d9d0051dc3414989, type: 3}
 --- !u!1 &6292084791833124090

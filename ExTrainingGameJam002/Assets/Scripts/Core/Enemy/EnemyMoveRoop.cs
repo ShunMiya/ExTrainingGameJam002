@@ -27,6 +27,10 @@ namespace EnemyMove.RoundTrip
         private float _elapsed;
         private int _currentTargetIndex = 0;
         private GetHolyWater getHolyWater;
+        private AudioSource auso;
+        [SerializeField] private AudioClip SE;
+        private int frameCount = 0;
+        [SerializeField] private int framesBetweenSounds;
 
 
         public void Awake()
@@ -38,6 +42,7 @@ namespace EnemyMove.RoundTrip
             _navMeshPath = new NavMeshPath();
             agent = GetComponent<NavMeshTotalDistanceCheck>(); //agentにNavMeshAgent2Dを取得
             getHolyWater = FindObjectOfType<GetHolyWater>();
+            auso = GetComponent<AudioSource>();
         }
 
         public void Update()
@@ -52,6 +57,17 @@ namespace EnemyMove.RoundTrip
 
                 if (getHolyWater.GetUndetectable() == false)
                 _currentTarget = agent.GetTotalDistance() <= 5f ? _calcedPlayerPos : _currentTarget;
+
+                if (agent.GetTotalDistance() <= 4f)
+                {
+                    frameCount++;
+
+                    if (frameCount >= framesBetweenSounds)
+                    {
+                        auso.PlayOneShot(SE);
+                        frameCount = 0; // フレーム数をリセット
+                    }
+                }
 
                 NestStep();
             }
