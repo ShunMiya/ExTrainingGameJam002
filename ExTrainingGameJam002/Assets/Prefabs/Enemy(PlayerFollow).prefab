@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1082947710}
   - component: {fileID: 1655337259520254027}
   - component: {fileID: 585173357}
+  - component: {fileID: -3730983873818730693}
   m_Layer: 0
   m_Name: Enemy(PlayerFollow)
   m_TagString: Enemy
@@ -145,3 +146,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseSystem: {fileID: 0}
+--- !u!114 &-3730983873818730693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295480394379411635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e0c9ee4ca8eaa4d8af6fd49cb798a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2054428175170773048}
+  upSprites:
+  - {fileID: -252191271, guid: 62d0a1f3dbfaac34d86a725bf9ab82b3, type: 3}
+  - {fileID: -1051177334, guid: 62d0a1f3dbfaac34d86a725bf9ab82b3, type: 3}
+  - {fileID: -1887603796, guid: 62d0a1f3dbfaac34d86a725bf9ab82b3, type: 3}
+  - {fileID: -1044147650, guid: 62d0a1f3dbfaac34d86a725bf9ab82b3, type: 3}
+  downSprites:
+  - {fileID: -757058877, guid: 64929d3be02eacc4eb540e7f02c12da5, type: 3}
+  - {fileID: -101902939, guid: 64929d3be02eacc4eb540e7f02c12da5, type: 3}
+  - {fileID: -1779267780, guid: 64929d3be02eacc4eb540e7f02c12da5, type: 3}
+  - {fileID: 33382040, guid: 64929d3be02eacc4eb540e7f02c12da5, type: 3}
+  leftSprites:
+  - {fileID: -1833492840, guid: 37e536d60a4a87f419da50b0fde5b85c, type: 3}
+  - {fileID: 891050432, guid: 37e536d60a4a87f419da50b0fde5b85c, type: 3}
+  - {fileID: -1893542922, guid: 37e536d60a4a87f419da50b0fde5b85c, type: 3}
+  - {fileID: -1108193998, guid: 37e536d60a4a87f419da50b0fde5b85c, type: 3}
+  rightSprites:
+  - {fileID: -1036266709, guid: c61455ba37a81dc46b6179a94f2735c9, type: 3}
+  - {fileID: -1517274839, guid: c61455ba37a81dc46b6179a94f2735c9, type: 3}
+  - {fileID: -734770823, guid: c61455ba37a81dc46b6179a94f2735c9, type: 3}
+  - {fileID: 1525854189, guid: c61455ba37a81dc46b6179a94f2735c9, type: 3}
+  idleSprites:
+  - {fileID: -757058877, guid: 64929d3be02eacc4eb540e7f02c12da5, type: 3}
+  - {fileID: -101902939, guid: 64929d3be02eacc4eb540e7f02c12da5, type: 3}
+  - {fileID: -1779267780, guid: 64929d3be02eacc4eb540e7f02c12da5, type: 3}
+  - {fileID: 33382040, guid: 64929d3be02eacc4eb540e7f02c12da5, type: 3}
+  movementAnimationSpeed: 0.2
+  idleAnimationSpeed: 0.2
