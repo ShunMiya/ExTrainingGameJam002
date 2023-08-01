@@ -7,11 +7,13 @@ namespace TimerSystem
     {
         public TimerController tc;
         private BGMControl bg;
+        private SaveCreate sv;
 
         private void Start()
         {
             bg = FindObjectOfType<BGMControl>();
             tc = FindObjectOfType<TimerController>();
+            sv = FindObjectOfType<SaveCreate>();
         }
         public void OnTriggerEnter2D(Collider2D collision)
         {
@@ -19,6 +21,7 @@ namespace TimerSystem
             {
                 bg.AreaStart();
                 tc.TimerStart();
+                sv.SaveGame();
 
                 Destroy(this);
             }

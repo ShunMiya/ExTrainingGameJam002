@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using SoundSystem;
+using TimerSystem;
 
 namespace UISystem
 {
@@ -10,9 +11,11 @@ namespace UISystem
         [SerializeField] private GameObject pauseUI;
         [SerializeField] private GameObject GameOverUI;
         [SerializeField] private GameObject GameClearUI;
+        private TimerController tmc;
 
         private void Start()
         {
+            tmc = FindObjectOfType<TimerController>();
             bg = FindObjectOfType<BGMControl>();
             Time.timeScale = 1f;
             pauseUI.SetActive(false);
@@ -45,6 +48,7 @@ namespace UISystem
             bg.GameClear();
             Time.timeScale = 0f;
             GameClearUI.SetActive(true);
+            tmc.GoalTime();
         }
 
         public void LoadStart()
