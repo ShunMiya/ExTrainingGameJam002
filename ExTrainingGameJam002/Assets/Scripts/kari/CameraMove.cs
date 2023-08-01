@@ -7,7 +7,7 @@ namespace StageSystem
     public class CameraMove : MonoBehaviour
     {
         public List<Transform> cameraPoints; // カメラが移動するポイントのリスト
-        public List<int> zoomValue;
+        public List<float> zoomValue;
         public int currentPointIndex = 0; // 現在のポイントのインデックス
 
         public float moveDuration = 1.0f;
@@ -34,7 +34,6 @@ namespace StageSystem
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("ここまで来てる");
                 if(AllMap == false)
                 {
                     AllMap = true;

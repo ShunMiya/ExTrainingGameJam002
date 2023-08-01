@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using StageSystem;
+using UISystem;
 
 namespace Player
 {
@@ -9,6 +10,8 @@ namespace Player
         public bool HaveKey = false;
         private bool AreaClearPoint = false;
         private CameraMove cameraMove;
+        private bool GameClearPoint = false;
+        private PauseSystem ps;
 
         private SpriteRenderer playerSpriteRenderer;
 
@@ -19,6 +22,7 @@ namespace Player
         {
             cameraMove = FindObjectOfType<CameraMove>();
             playerSpriteRenderer = GetComponent<SpriteRenderer>();
+            ps = FindObjectOfType<PauseSystem>();
         }
 
         // Update is called once per frame
@@ -26,12 +30,16 @@ namespace Player
         {
             if (!AreaClearPoint) return;
 
+            if (!HaveKey) return;
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("ここまで来てる");
-                if (!HaveKey) return;
-                Debug.Log("ここにも来てる");
 
+                if(GameClearPoint)
+                {
+                    ps.GameClear();
+                    return;
+                }
                 cameraMove.PointUpdate();
 
                 // プレイヤーを上に移動させるコルーチンを開始
@@ -67,9 +75,10 @@ namespace Player
             HaveKey = false;
         }
 
-        public void AreaClearPointUpdate(bool data)
+        public void AreaClearPointUpdate(bool area,bool stage)
         {
-            AreaClearPoint = data;
+            AreaClearPoint = area;
+            GameClearPoint = stage;
         }
 
         public void HaveKeyUpdate()

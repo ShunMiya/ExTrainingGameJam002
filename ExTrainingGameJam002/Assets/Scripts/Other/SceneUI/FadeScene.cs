@@ -47,7 +47,8 @@ namespace TitleScene
         {
             yield return StartCoroutine(FadeOut());
 
-            EditorApplication.isPlaying = false; // UnityEditorClose NotAplicationClose
+            //EditorApplication.isPlaying = false; // UnityEditorClose NotAplicationClose
+            Application.Quit();
         }
 
         private IEnumerator FadeIn()
