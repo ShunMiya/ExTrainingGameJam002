@@ -16,8 +16,12 @@ namespace StageSystem
         public bool AllMapPoint = false;
         public bool AllMap = false;
 
+        private AudioSource auso;
+        [SerializeField] private AudioClip SE;
+
         private void Start()
         {
+            auso = GetComponent<AudioSource>();
             cam = GetComponent<Camera>();
             transform.position = cameraPoints[currentPointIndex].position;
             cam.orthographicSize = zoomValue[currentPointIndex];
@@ -37,6 +41,7 @@ namespace StageSystem
                 if(AllMap == false)
                 {
                     AllMap = true;
+                    auso.PlayOneShot(SE);
                     StartCoroutine(MoveToNextStage());
                 }
                 else

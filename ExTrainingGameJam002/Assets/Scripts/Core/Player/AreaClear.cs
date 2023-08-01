@@ -12,6 +12,9 @@ namespace Player
         private CameraMove cameraMove;
         private bool GameClearPoint = false;
         private PauseSystem ps;
+        private AudioSource auso;
+        [SerializeField] private AudioClip door;
+        [SerializeField] private AudioClip Key;
 
         private SpriteRenderer playerSpriteRenderer;
 
@@ -20,6 +23,7 @@ namespace Player
 
         public void Start()
         {
+            auso = GetComponent<AudioSource>();
             cameraMove = FindObjectOfType<CameraMove>();
             playerSpriteRenderer = GetComponent<SpriteRenderer>();
             ps = FindObjectOfType<PauseSystem>();
@@ -37,9 +41,12 @@ namespace Player
 
                 if(GameClearPoint)
                 {
+                    if(ps ==null) ps = FindObjectOfType<PauseSystem>();
+
                     ps.GameClear();
                     return;
                 }
+                auso.PlayOneShot(door);
                 cameraMove.PointUpdate();
 
                 // プレイヤーを上に移動させるコルーチンを開始
@@ -83,6 +90,7 @@ namespace Player
 
         public void HaveKeyUpdate()
         {
+            auso.PlayOneShot(Key);
             HaveKey = true;
         }
     }
