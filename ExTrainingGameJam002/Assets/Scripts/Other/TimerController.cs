@@ -22,12 +22,11 @@ namespace TimerSystem
         public void TimerStart()
         {
             // シーン読み込み後、1秒待機してからカウントダウン開始
-            StartCoroutine(StartCountdownAfterDelay());
+            StartCountdownAfterDelay();
         }
 
-        IEnumerator StartCountdownAfterDelay()
+        public void StartCountdownAfterDelay()
         {
-            yield return new WaitForSeconds(0.5f); // 1秒待機
             currentTime = totalTime; // カウントダウン開始
             StartCoroutine(UpdateTimer());
         }

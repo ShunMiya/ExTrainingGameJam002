@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Player;
 using TimerSystem;
 using StageSystem;
+using SoundSystem;
 
 public class LoadData : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class LoadData : MonoBehaviour
     public GameObject enemy3;
     public TimerController timer;
     public CameraMove cm;
+    private BGMControl bgmcontrol;
+
+    public void Start()
+    {
+        bgmcontrol = FindObjectOfType<BGMControl>();
+    }
 
     public void LoadGame()
     {
@@ -39,6 +46,8 @@ public class LoadData : MonoBehaviour
             timer.currentTime = saveData.Timer;
 
             cm.currentPointIndex = saveData.AreaPointIndexNum;
+
+            bgmcontrol.AreaStart();
             // ëºÇÃèÓïÒÇ‡Ç±Ç±Ç≈îΩâfÇ≥ÇπÇÈ
         }
     }
