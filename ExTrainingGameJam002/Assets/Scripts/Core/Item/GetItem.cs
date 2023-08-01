@@ -22,7 +22,7 @@ public class GetItem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            switch(num)
+            switch (num)
             {
                 case 0:
                     areaClear.HaveKeyUpdate();

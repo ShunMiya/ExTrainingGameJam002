@@ -63,11 +63,11 @@ namespace EnemyMove.RoundTrip
                 if (_navMeshCorners.Count == 0)
                 {
                     _currentTargetIndex++;
-                    if (_currentTargetIndex >= _targetList.Count)
-                        _currentTargetIndex = 0;
+                    if (_currentTargetIndex > _targetList.Count) _currentTargetIndex = 0;
 
                     _currentTarget = _targetList[_currentTargetIndex].position;
                     _nextPoint = _myTransform.localPosition;
+                    _elapsed = _reCalcTime;
                     return;
                 }
                 _nextPoint = _navMeshCorners.Dequeue();
