@@ -9,6 +9,9 @@ public class SaveData
     public float enemy1PositionY;
     public float enemy2PositionX;
     public float enemy2PositionY;
+    public float enemy3PositionX;
+    public float enemy3PositionY;
+
 
     public float Timer;
 

@@ -11,6 +11,7 @@ public class SaveCreate : MonoBehaviour
     public AreaClear areaClear;
     public GameObject enemy1;
     public GameObject enemy2;
+    public GameObject enemy3;
     public TimerController timer;
     public CameraMove cm;
 
@@ -26,6 +27,8 @@ public class SaveCreate : MonoBehaviour
         saveData.enemy1PositionY = enemy1.transform.position.y;
         saveData.enemy2PositionX = enemy2.transform.position.x;
         saveData.enemy2PositionY = enemy2.transform.position.y;
+        saveData.enemy3PositionX = enemy3.transform.position.x;
+        saveData.enemy3PositionY = enemy3.transform.position.y;
 
         saveData.Timer = timer.currentTime;
 

@@ -11,6 +11,7 @@ public class LoadData : MonoBehaviour
     public AreaClear areaClear;
     public GameObject enemy1;
     public GameObject enemy2;
+    public GameObject enemy3;
     public TimerController timer;
     public CameraMove cm;
 
@@ -30,8 +31,10 @@ public class LoadData : MonoBehaviour
             areaClear.HaveKey = saveData.HaveKey;
             Vector2 enemy1Position = new Vector2(saveData.enemy1PositionX, saveData.enemy1PositionY);
             Vector2 enemy2Position = new Vector2(saveData.enemy2PositionX, saveData.enemy2PositionY);
+            Vector2 enemy3Position = new Vector2(saveData.enemy3PositionX, saveData.enemy3PositionY);
             enemy1.transform.position = enemy1Position;
             enemy2.transform.position = enemy2Position;
+            enemy3.transform.position = enemy3Position;
 
             timer.currentTime = saveData.Timer;
 

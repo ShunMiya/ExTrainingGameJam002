@@ -31,6 +31,7 @@ namespace EnemyMove.RoundTrip
         [SerializeField] private AudioClip SE;
         private int frameCount = 0;
         [SerializeField] private int framesBetweenSounds;
+        [SerializeField] private int SErange;
 
 
         public void Awake()
@@ -58,7 +59,7 @@ namespace EnemyMove.RoundTrip
                 if (getHolyWater.GetUndetectable() == false)
                 _currentTarget = agent.GetTotalDistance() <= 5f ? _calcedPlayerPos : _currentTarget;
 
-                if (agent.GetTotalDistance() <= 4f)
+                if (agent.GetTotalDistance() <= SErange)
                 {
                     frameCount++;
 
