@@ -20,7 +20,7 @@ namespace TimerSystem
                 bg.AreaStart();
                 tc.TimerStart();
 
-                Destroy(gameObject);
+                Destroy(this);
             }
         }
     }
