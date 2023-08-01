@@ -15,6 +15,8 @@ namespace Player
         private AudioSource auso;
         [SerializeField] private AudioClip door;
         [SerializeField] private AudioClip Key;
+        private SaveCreate sv;
+
 
         private SpriteRenderer playerSpriteRenderer;
 
@@ -27,6 +29,7 @@ namespace Player
             cameraMove = FindObjectOfType<CameraMove>();
             playerSpriteRenderer = GetComponent<SpriteRenderer>();
             ps = FindObjectOfType<PauseSystem>();
+            sv = FindObjectOfType<SaveCreate>();
         }
 
         // Update is called once per frame
@@ -92,6 +95,7 @@ namespace Player
         {
             auso.PlayOneShot(Key);
             HaveKey = true;
+            sv.SaveGame();
         }
     }
 }

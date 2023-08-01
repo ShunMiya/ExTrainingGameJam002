@@ -11,6 +11,8 @@ namespace TimerSystem
         public float currentTime; // 現在の残り時間
         private TextMeshProUGUI textMeshPro;
         [SerializeField]private PauseSystem pauseSystem;
+        [SerializeField] private ResultTime resultText;
+        private string timetext;
 
         void Start()
         {
@@ -45,12 +47,19 @@ namespace TimerSystem
                 string timeText = minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + milliseconds.ToString("00");
                 textMeshPro.text = timeText;
 
+                timetext = timeText;
+
                 yield return null;
             }
 
-            textMeshPro.text = "00:00:00";
             // タイムアップ時の処理
+            textMeshPro.text = "00:00:00";
             pauseSystem.GameOver();
+        }
+
+        public void GoalTime()
+        {
+            resultText.SetText(timetext);
         }
     }
 }
