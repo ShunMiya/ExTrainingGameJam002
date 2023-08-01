@@ -6600,7 +6600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6023475550406459748, guid: 6193a32e36128254d9d0051dc3414989, type: 3}
       propertyPath: SErange
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6023475550406459748, guid: 6193a32e36128254d9d0051dc3414989, type: 3}
       propertyPath: _player
@@ -14575,7 +14575,7 @@ MonoBehaviour:
   _reCalcTime: 0.1
   SE: {fileID: 8300000, guid: a81a012f2cb835749a4a33a71ae78f8f, type: 3}
   framesBetweenSounds: 7
-  SErange: 5
+  SErange: 4
 --- !u!114 &2054428175599544206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15497,7 +15497,7 @@ MonoBehaviour:
   _reCalcTime: 0.1
   SE: {fileID: 8300000, guid: a81a012f2cb835749a4a33a71ae78f8f, type: 3}
   framesBetweenSounds: 7
-  SErange: 5
+  SErange: 4
 --- !u!114 &6023475549114451366
 MonoBehaviour:
   m_ObjectHideFlags: 0

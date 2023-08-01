@@ -44,6 +44,7 @@ namespace EnemyMove.RoundTrip
             agent = GetComponent<NavMeshTotalDistanceCheck>(); //agentにNavMeshAgent2Dを取得
             getHolyWater = FindObjectOfType<GetHolyWater>();
             auso = GetComponent<AudioSource>();
+            frameCount = framesBetweenSounds - 1;
         }
 
         public void Update()
@@ -68,6 +69,10 @@ namespace EnemyMove.RoundTrip
                         auso.PlayOneShot(SE);
                         frameCount = 0; // フレーム数をリセット
                     }
+                }
+                else
+                {
+                    frameCount = framesBetweenSounds - 1;
                 }
 
                 NestStep();
